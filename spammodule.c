@@ -2,7 +2,7 @@
 #include <Python.h>
 
 // A custom exception type for this module.
-static PyObject* SpamError;
+static PyObject* spam_error;
 
 //! Call the C `system` function with the arguments in `args`.
 static PyObject* spam_system(PyObject* self, PyObject* args)
@@ -21,7 +21,7 @@ static PyObject* spam_system(PyObject* self, PyObject* args)
     int sts = system(command);
     if (sts < 0)
     {
-        PyErr_SetString(SpamError, "Call to `system()` failed");
+        PyErr_SetString(spam_error, "Call to `system()` failed");
         return NULL;
     }
 
@@ -55,14 +55,14 @@ PyMODINIT_FUNC PyInit_spam(void)
         return NULL;
     }
 
-    // The Python name for the exception type is `spam.error`
+    // The Python name for the exception type is `spam.SpamError`
     // with a base class of `Exception`.
-    SpamError = PyErr_NewException("spam.error", NULL, NULL);
+    spam_error = PyErr_NewException("spam.SpamError", NULL, NULL);
 
-    // Make sure the `spam.error` type object does not get garbage collected
+    // Make sure the `spam.SpamError` type object does not get garbage collected
     // if some Python code deletes it from the module.
-    Py_INCREF(SpamError);
+    Py_INCREF(spam_error);
 
-    PyModule_AddObject(module, "error", SpamError);
+    PyModule_AddObject(module, "SpamError", spam_error);
     return module;
 }
