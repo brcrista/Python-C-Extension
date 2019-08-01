@@ -1,6 +1,10 @@
 .PHONY: all
-all: spammodule
+all: build sdist
 
-.PHONY: spammodule
-spammodule:
+.PHONY: build
+build:
 	python3 setup.py build
+
+.PHONY: sdist
+sdist:
+	python3 setup.py sdist
