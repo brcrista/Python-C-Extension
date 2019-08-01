@@ -1,6 +1,9 @@
 #define PY_SSIZE_T_CLEAN
 #include <Python.h>
 
+// A custom exception type for this module.
+static PyObject* SpamError;
+
 //! Call the C `system` function with the arguments in `args`.
 static PyObject* spam_system(PyObject* self, PyObject* args)
 {
@@ -33,20 +36,15 @@ static PyMethodDef SpamMethods[] =
     { NULL, NULL, 0, NULL } // Sentinel
 };
 
-static spam_doc = NULL;
-
 // The module's definition
 static struct PyModuleDef spammodule =
 {
     PyModuleDef_HEAD_INIT,
     "spam", // name of the module
-    spam_doc, // module documentation
+    NULL, // module documentation
     -1, // the module keeps state in global variables
     SpamMethods
 };
-
-// A custom exception type for this module.
-static PyObject* SpamError;
 
 //! The initialization function for the `spam` module.
 PyMODINIT_FUNC PyInit_spam(void)
