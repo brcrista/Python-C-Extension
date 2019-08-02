@@ -1,5 +1,5 @@
 .PHONY: all
-all: build install sdist
+all: build install sdist wheel
 
 .PHONY: build
 build:
