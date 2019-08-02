@@ -1,4 +1,4 @@
-from distutils.core import setup, Extension
+from setuptools import setup, Extension
 
 spam_module = Extension('spam', sources=['spammodule.c'])
 
