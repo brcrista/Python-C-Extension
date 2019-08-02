@@ -3,17 +3,17 @@ all: build install sdist wheel
 
 .PHONY: build
 build:
-	python3 setup.py build
+	python setup.py build
 
 .PHONY: install
 install:
-	python3 setup.py install
+	python setup.py install
 
 .PHONY: sdist
 sdist:
-	python3 setup.py sdist
+	python setup.py sdist
 
 .PHONY: wheel
 wheel:
-	pip3 install wheel
-	python3 setup.py bdist_wheel
+	pip install wheel
+	python setup.py bdist_wheel
